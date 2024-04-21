@@ -1,0 +1,76 @@
+.video-back{
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    z-index: -1;
+}
+
+#title{
+    position: absolute;
+    top:0;
+    text-align: center;
+    padding-top: 7%;
+    padding-bottom: 1%;
+    width: 100%;
+    min-height: 5vh;
+    background-color: #000;
+    color: #fff;
+    font-size: 25px;
+    z-index:-1;
+    /* text-shadow: 0px 0px 10px #0000FF;
+    text-shadow: 0px 0px 10px #00BFFF; */
+}
+
+.main-info{
+    position: absolute;
+    bottom: 15%;
+    left: 10%;
+    font-size: 25px;
+    text-shadow: 1px 0 5px black;
+    display: flex;
+}
+
+#genre{
+    margin-left: 5%;
+}
+
+.small-description{
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    font-size: 25px;
+    text-shadow: 1px 0 5px black;
+    display: block;
+}
+
+#watch{
+    font-family: Arial Narrow;
+    font-size: 20px;
+    color:#fff;
+    background: radial-gradient(96.72% 187.09% at 0 100.29%,#0c97e7.44%,#0c51e7  70.83%,#0a46c7 93.75%);
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+    padding: 10px 50px;
+    transition: transform .4s;
+    cursor: pointer;
+    margin-top: 2%;
+}
+
+#watch:hover{
+    border: 2px solid #fff;
+    background: rgba(255, 255, 255, 0);
+}
+
+.full-description{
+    width: 80%;
+    margin: 2% auto;
+}
+
+#description{
+    width: 70%;
+    font-size: 25px;
+    opacity: 0.8;
+}
