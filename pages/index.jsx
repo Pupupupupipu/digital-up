@@ -1,9 +1,9 @@
-import { Catalog } from "../components/catalog/catalog"
-import { Header } from "../components/header"
+import { Catalog } from "../components/catalog/catalog";
+import { createRoot } from "react-dom/client";
 
-export default function HomePage(){
-    return(
-        <Catalog />
-    )
+
+export default function IndexPage(){
+  return(
+    <Catalog />
+  )
 }
-
