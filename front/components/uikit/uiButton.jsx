@@ -23,6 +23,6 @@ export function UIButton({children, className, size, variant, type}){
     
 
     return(
-        <button className={buttonClassName} type={type}>{children}</button>
+        <button className={buttonClassName} type={type} >{children}</button>
     )
 }

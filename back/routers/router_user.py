@@ -3,7 +3,7 @@ from back.db_connection import get_session
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from back.models.models import User
-from back.models.schemas import User_create
+from back.models.schemas import User_create, User_patch
 import bcrypt
 from back.config import settings
 
@@ -36,7 +36,8 @@ async def create_user(
         db.add(user)
         await db.commit()
         await db.refresh(user)
-        return {"name": user.name, 
+        return {"id": user.id, 
+                "name": user.name, 
                 "login": user.login}
     except Exception as e:
         print(e)
@@ -58,7 +59,7 @@ async def sign_in_user(
         if user.hash_password != str(hashed_password):
             raise HTTPException(detail="Incorrect password", status_code=400)
         
-        return { "name": user.name, "login": user.login }
+        return { "id": user.id, "name": user.name, "login": user.login }
     except Exception as e:
         print(e)
         raise  HTTPException(status_code=500, detail=f"Произошла ошибка: {e}")
@@ -71,6 +72,22 @@ async def get_users(db: AsyncSession=Depends(get_session)):
         users = await db.execute(select(User))
 
         return users.scalars().all()
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail=f"Произошла ошибка: {e}")
+    
+@user_router.patch('/name')
+async def change_name_user(
+    user_new_name: User_patch,
+    db: AsyncSession=Depends(get_session)):
+    try:
+        user = await db.execute(select(User).filter(User.id == user_new_name.id))
+
+        user = user.scalars().first()
+        user.name = user_new_name.new_name
+        await db.commit()
+        await db.refresh(user)
+        return user
     except Exception as e:
         print(e)
         raise HTTPException(status_code=500, detail=f"Произошла ошибка: {e}")

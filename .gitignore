@@ -1,5 +1,5 @@
 .env
+.env_
 .next
 node_modules
 log.txt
-old

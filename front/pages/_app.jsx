@@ -4,6 +4,7 @@ import UiModal from "../components/uikit/uiModal"
 import { useState } from 'react'
 import UiSearch from "../components/uikit/uiSearch";
 
+
 export default function App({ Component, pageProps }) {
 
     const [showModal, setShowModal] = useState(false);
@@ -22,6 +23,7 @@ export default function App({ Component, pageProps }) {
         setSearchAnswer(value)
     }
 
+
     
 
     return (
@@ -32,7 +34,7 @@ export default function App({ Component, pageProps }) {
         <Header showModal={handleShowModalChange} userActive={userActive} searchAnswer={handleSearchAnswer} />
         {(searchAnswer.length > 0) && <UiSearch searchAnswer={searchAnswer}/> }
         <Component {...pageProps} /> 
-        {showModal && <UiModal showModal={handleShowModalChange} userActive={handleUserActive} />}
+        {showModal && <UiModal showModal={handleShowModalChange} userActive={handleUserActive} userData={userActive}/>}
         </>
     )
 }
