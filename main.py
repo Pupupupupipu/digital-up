@@ -7,6 +7,7 @@ from fastapi.responses import FileResponse
 from back.db_connection import init_db
 from back.routers.router_film import film_router
 from back.routers.router_user import user_router
+from back.routers.router_genre import genre_router
 
 
 app = FastAPI()
@@ -23,6 +24,7 @@ app.add_middleware(
 #app.include_router(router)
 app.include_router(film_router)
 app.include_router(user_router)
+app.include_router(genre_router)
 
 
 

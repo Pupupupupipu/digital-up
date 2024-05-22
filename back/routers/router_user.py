@@ -1,17 +1,18 @@
 from fastapi import APIRouter, Depends, HTTPException
-from fastapi.responses import JSONResponse
 from back.db_connection import get_session
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from back.models.user import User
-from back.models.schemas.user import User_create
+from back.models.models import User
+from back.models.schemas import User_create
 import bcrypt
+from back.config import settings
 
 
 user_router = APIRouter(tags=["users"], prefix="/users")
 
 # salt = bcrypt.gensalt()
-salt = b"$2b$12$7vs1U0V38x8CyXzLxrHmW."
+salt = settings.salt.encode('utf-8')
+
 
 
 @user_router.post('/')
@@ -19,6 +20,7 @@ async def create_user(
     item: User_create,
     db: AsyncSession=Depends(get_session)):
     try:
+        print("saltsaltsalt", salt)
         existing_user = await db.execute(select(User).filter(User.login == item.login))
         existing_user = existing_user.scalars().all()
 

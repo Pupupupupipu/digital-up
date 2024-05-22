@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UIButton } from "./ui-button";
+import { UIButton } from "./uiButton";
 import axios from 'axios';
 import { CrossIcon } from "../icons/cross-icon";
 
